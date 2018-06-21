@@ -15,14 +15,15 @@ class BananasController extends Controller
         
         $banana = new Banana;
         $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
-         $all = DB::table('bananas')->select('banana')->orderBy('updated_at', 'desc');
-        //$newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->get(1);
+        $all = DB::table('bananas')->orderBy('updated_at', 'desc')->pluck('banana');
+        $namelog = DB::table('bananas')->orderBy('updated_at', 'desc')->pluck('name');
         
         return view('bananas.create', [
             'banana' => $banana,
             'newbanana' => $newbanana,
             'message' => "",
             'all' => $all,
+            'namelog' => $namelog,
         ]);
     }
     public function store(Request $request)
