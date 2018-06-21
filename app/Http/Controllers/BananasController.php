@@ -38,6 +38,8 @@ class BananasController extends Controller
         
         $banana = new Banana;
         $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
+        //$newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->get(1);
+        
         return view('bananas.create', [
             'banana' => $banana,
             'newbanana' => $newbanana,
@@ -46,7 +48,16 @@ class BananasController extends Controller
     public function store(Request $request)
     {
         $user_id = \Auth::user()->id;
-        
+        $check = DB::table('bananas')->orderBy('updated_at', 'desc')->first();
+        if($check->banana==$request->banana){
+            $banana = new Banana;
+            $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
+            return view('bananas.create', [
+            'banana' => $banana,
+            'newbanana' => $newbanana,
+            'message' => "既に投稿されてます",
+        ]);
+        }
         $banana = new Banana;
         $banana->banana = $request->banana;
         $banana->userid = $user_id;
@@ -57,6 +68,7 @@ class BananasController extends Controller
         return view('bananas.create', [
             'banana' => $banana,
             'newbanana' => $newbanana,
+            'message' => "",
         ]);
     }
     public function edit($id)
