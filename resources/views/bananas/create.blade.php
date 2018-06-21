@@ -18,10 +18,11 @@
     {!! Form::close() !!}
      <?php
      if($message=="fail"){
-         print "もう" . $name->name . "さんが投稿してたよ...";
+         print "もう" . $name->name . "さんが投稿してたよ..."
+         ?><br><?php
      }
      if($all){
-         for($i=1;$i<count($all);$i++){
+         for($i=0;$i<count($all);$i++){
              print $all[$i] . " by " . $namelog[$i];
              ?><br><?php
          }

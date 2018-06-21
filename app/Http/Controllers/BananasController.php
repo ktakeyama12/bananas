@@ -71,7 +71,7 @@ class BananasController extends Controller
         $banana->banana = "バナナ";
         $banana->userid = "10000";
         $banana->done = "0";
-        $banana->name = "最初";
+        $banana->name = " ";
         $banana->save();
         return redirect('/');
          
