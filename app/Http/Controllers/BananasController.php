@@ -50,15 +50,16 @@ class BananasController extends Controller
     {
         $user_id = \Auth::user()->id;
         $check = DB::table('bananas')->orderBy('updated_at', 'desc')->first();
-        if($check->banana==$request->banana){
+        if($check->userid==$user_id){
             $banana = new Banana;
             $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
             return view('bananas.create', [
             'banana' => $banana,
             'newbanana' => $newbanana,
-            'message' => "既に投稿されてます",
-        ]);
-        }
+            'message' => "既に投稿しました",
+            ]);
+        }else{
+        
         $banana = new Banana;
         $banana->banana = $request->banana;
         $banana->userid = $user_id;
@@ -71,6 +72,7 @@ class BananasController extends Controller
             'newbanana' => $newbanana,
             'message' => "",
         ]);
+    }
     }
     public function edit($id)
     {
