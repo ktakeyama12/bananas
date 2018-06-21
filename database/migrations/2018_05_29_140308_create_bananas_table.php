@@ -18,6 +18,7 @@ class CreateBananasTable extends Migration
             $table->integer('userid');
             $table->string('banana');
             $table->integer('done');
+            $table->string('name');
                         $table->timestamps();
         });
     }

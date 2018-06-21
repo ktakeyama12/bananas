@@ -10,47 +10,29 @@ use App\Banana;
 use DB;
 class BananasController extends Controller
 {
-    
-    public function index()
-    {
-    $bananas = Category::all();
-    $users = User::all();
-        
-    $a = $categories->toArray();
-        
-        return view('categories.index', [
-            'categories' => $categories,
-            'users' => $users,
-                        'a' => $a,
-        ]);
-    }
-    
-    public function show($id)
-    {
-        $categories = Category::find($id);
-
-        return view('categories.show', [
-            'categories' => $categories,
-        ]);
-    }
     public function create()
     {
         
         $banana = new Banana;
         $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
+         $all = DB::table('bananas')->select('banana')->orderBy('updated_at', 'desc');
         //$newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->get(1);
         
         return view('bananas.create', [
             'banana' => $banana,
             'newbanana' => $newbanana,
             'message' => "",
+            'all' => $all,
         ]);
     }
     public function store(Request $request)
     {
         $user_id = \Auth::user()->id;
+        $nameeat = \Auth::user()->name;
         $check = DB::table('bananas')->orderBy('updated_at', 'desc')->first();
         $name = DB::table('users')->where('id',$check->userid)->first();
+        $all = DB::table('bananas')->orderBy('updated_at', 'desc')->pluck('banana');
+        $namelog = DB::table('bananas')->orderBy('updated_at', 'desc')->pluck('name');
         if($request->oldbanana!=$check->banana){
             $banana = new Banana;
             $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
@@ -59,6 +41,8 @@ class BananasController extends Controller
             'newbanana' => $newbanana,
             'message' => "fail",
             'name' => $name,
+            'all' => $all,
+            'namelog' => $namelog,
             ]);
         }else{
         
@@ -66,6 +50,7 @@ class BananasController extends Controller
         $banana->banana = $request->banana;
         $banana->userid = $user_id;
         $banana->done = "0";
+        $banana->name = $nameeat;
         $banana->save();
         $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
         $banana = new Banana;
@@ -73,39 +58,19 @@ class BananasController extends Controller
             'banana' => $banana,
             'newbanana' => $newbanana,
             'message' => "sucesss",
+            'all' => $all,
+            'namelog' => $namelog,
         ]);
     }
     }
-    public function edit($id)
-    {
-        $category = Category::find($id);
 
-        return view('categories.edit', [
-            'categories' => $categories,
-        ]);
-    }
-    public function update(Request $request, $id)
-    {
-        $category = Message::find($id);
-        $category->content = $request->content;
-        $category->save();
-
-        return redirect('/');
-    }
-    public function destroy($id)
-    {
-        $category = Category::find($id);
-        $category->delete();
-
-        return redirect('/');
-    }
-    
     public function shokika()
     {
          $banana = new Banana;
         $banana->banana = "バナナ";
         $banana->userid = "10000";
         $banana->done = "0";
+        $banana->name = "最初";
         $banana->save();
         return redirect('/');
          
