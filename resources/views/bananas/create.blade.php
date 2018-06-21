@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <h1>BANANA新規作成ページ</h1>
-    <?php print $message ?>
+    <h1>マジカルBANANA新規作成ページ</h1>
+   
     <?php print $newbanana->banana . "と言ったら" ?>
     {!! Form::model($banana, ['route' => 'bananas.store'], $newbanana->banana) !!}
 
@@ -16,5 +16,9 @@
         {!! Form::submit('投稿') !!}
         
     {!! Form::close() !!}
-
+     <?php
+     if($message=="fail"){
+         print "もう" . $name->name . "さんが投稿してたよ...";
+     }
+     ?>
 @endsection
