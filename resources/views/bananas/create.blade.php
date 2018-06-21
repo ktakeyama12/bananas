@@ -20,9 +20,11 @@
      if($message=="fail"){
          print "もう" . $name->name . "さんが投稿してたよ...";
      }
-     for($i=0;$i<count($all);$i++){
-         print $all[$i] . " by " . $namelog[$i];
-         ?><br><?php
+     if($all){
+         for($i=0;$i<count($all);$i++){
+             print $all[$i] . " by " . $namelog[$i];
+             ?><br><?php
+         }
      }
      
      ?>
