@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('bananas.create', 'BananasController@create')->name('bananas.create');
 Route::post('/banana', 'BananasController@store')->name('bananas.store');
+Route::get('bananas.shokika', 'BananasController@shokika')->name('bananas.shokika');

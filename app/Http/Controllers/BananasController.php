@@ -43,6 +43,7 @@ class BananasController extends Controller
         return view('bananas.create', [
             'banana' => $banana,
             'newbanana' => $newbanana,
+            'message' => "",
         ]);
     }
     public function store(Request $request)
@@ -94,5 +95,15 @@ class BananasController extends Controller
 
         return redirect('/');
     }
-
+    
+    public function shokika()
+    {
+         $banana = new Banana;
+        $banana->banana = "バナナ";
+        $banana->userid = "10000";
+        $banana->done = "0";
+        $banana->save();
+        return redirect('/');
+         
+    }
 }

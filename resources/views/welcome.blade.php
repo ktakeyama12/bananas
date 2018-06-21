@@ -65,7 +65,8 @@
         </style>
     </head>
     <body>
-        {!! link_to_route('bananas.create', '新規BANANAsakusei') !!}
+        {!! link_to_route('bananas.create', 'マジカルバナナ') !!}
+        {!! link_to_route('bananas.shokika', '初期化') !!}
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
