@@ -82,7 +82,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Magical Banana
                 </div>
 
                 <div class="links">

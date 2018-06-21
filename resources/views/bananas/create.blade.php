@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>マジカルBANANA新規作成ページ</h1>
-   
+   @auth
     <?php print $newbanana->banana . "と言ったら" ?>
     {!! Form::model($banana, ['route' => 'bananas.store'], $newbanana->banana) !!}
 
@@ -29,4 +29,7 @@
      }
      
      ?>
+     @else
+     ログインしてね
+     @endauth
 @endsection
