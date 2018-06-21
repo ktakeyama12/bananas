@@ -50,7 +50,7 @@ class BananasController extends Controller
     {
         $user_id = \Auth::user()->id;
         $check = DB::table('bananas')->orderBy('updated_at', 'desc')->first();
-        if($check->userid==$user_id){
+        if($request->oldbanana!=$check->banana){
             $banana = new Banana;
             $newbanana =  DB::table('bananas')->orderBy('updated_at', 'desc')->first();
             return view('bananas.create', [
@@ -70,7 +70,7 @@ class BananasController extends Controller
         return view('bananas.create', [
             'banana' => $banana,
             'newbanana' => $newbanana,
-            'message' => "",
+            'message' => "sucesss",
         ]);
     }
     }
