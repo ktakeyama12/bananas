@@ -67,7 +67,8 @@ class BananasController extends Controller
 
     public function shokika()
     {
-         $banana = new Banana;
+        Banana::truncate();
+        $banana = new Banana;
         $banana->banana = "バナナ";
         $banana->userid = "10000";
         $banana->done = "0";
