@@ -24,5 +24,5 @@ Route::post('/banana', 'BananasController@store')->name('bananas.store');
 Route::get('bananas.shokika', 'BananasController@shokika')->name('bananas.shokika');
 Route::get('quiz.sakusei', 'QuizController@sakusei')->name('quiz.sakusei');
 Route::get('quiz.answer', 'QuizController@answer')->name('quiz.answer');
-Route::post('/quiz', 'QuizController@store')->name('quiz.store');
-Route::post('/quiz', 'QuizController@answerinput')->name('quiz.answerinput');
+Route::post('quiz.store', 'QuizController@store')->name('quiz.store');
+Route::post('quiz.answerinput', 'QuizController@answerinput')->name('quiz.answerinput');
