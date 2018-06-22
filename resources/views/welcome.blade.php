@@ -68,6 +68,10 @@
         {!! link_to_route('bananas.create', 'マジカルバナナしない？') !!}
         <br>
         {!! link_to_route('bananas.shokika', '初期化') !!}
+        <br>
+        {!! link_to_route('quiz.sakusei', ' クイズやろうぜ？') !!}
+        <br>
+        {!! link_to_route('quiz.answer', ' クイズ答えようぜ？') !!}
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
