@@ -58,9 +58,24 @@ class QuizController extends Controller
     }
     
     public function answer(){
-        $quiz = Quiz::inRandomOrder()->select('quiz')->first();
+        $quiz = Quiz::inRandomOrder()->first();
         return view('quiz.answer', [
             'quiz' => $quiz,
+            'message' => "",
+        ]);
+    }
+    
+    public function answerinput(Request $request){
+        //print $request->answerinput;
+        if($request->oldanswer==$request->answerinput){
+            $message="正解";
+        }else{
+            $message="違います";
+        }
+        $quiz = Quiz::inRandomOrder()->first();
+        return view('quiz.answer', [
+            'quiz' => $quiz,
+            'message' => $message,
         ]);
     }
 }
